@@ -8,8 +8,7 @@ info:
   title: Routes Service
 
 servers:
-# - url: https://api.kong-air.com
-- url: http://kongair-routes.kongair.svc.cluster.local:8080
+- url: https://api.kong-air.com
   description: KongAir API Server
 
 paths:
