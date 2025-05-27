@@ -19,6 +19,6 @@ plugins:
   config:
     account_email: "{vault://env/acme/account_email}"
     renew_threshold_days: 30
-    storage: kong
+    storage: "kong"
     domains:
       - "api.kong-air.com"
