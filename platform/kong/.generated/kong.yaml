@@ -161,7 +161,7 @@ services:
   tags:
   - flight-data
   - platform-repo-managed
-- host: bookings.kongair
+- host: kongair-bookings.kongair.svc.cluster.local
   id: 22e1521b-9b91-5d2f-917b-4463066f1aed
   name: bookings-service
   path: /
@@ -171,7 +171,7 @@ services:
     name: jwt
     tags:
     - platform-repo-managed
-  port: 8082
+  port: 3000
   protocol: http
   routes:
   - id: 9bd2c85f-5d13-5910-838c-9fad63e8a54d
@@ -219,7 +219,7 @@ services:
   tags:
   - sales
   - platform-repo-managed
-- host: customer.kongair
+- host: kongair-customers.kongair.svc.cluster.local
   id: 690e812e-2873-566a-b02f-d03e0bf8ff69
   name: customer-information-service
   path: /
@@ -229,7 +229,7 @@ services:
     name: jwt
     tags:
     - platform-repo-managed
-  port: 8083
+  port: 3000
   protocol: http
   routes:
   - id: 5984bb2d-328e-5785-a06a-f639c3a59d94
