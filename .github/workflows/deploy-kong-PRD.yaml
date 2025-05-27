@@ -31,12 +31,12 @@ jobs:
       - name: Setup deck
         uses: kong/setup-deck@v1
         with:
-          deck-version: '1.46.0'
+          deck-version: '1.26.0'
           wrapper: false
 
       - name: deck gateway sync
         run: |
-          deck gateway sync --select-tag platform-repo-managed \
+          deck sync --select-tag platform-repo-managed \
               -s PRD/kong/kong.yaml \
               --konnect-runtime-group-name ${{ vars.KONNECT_CONTROL_PLANE_NAME}} \
               --konnect-token ${{ secrets.KONNECT_PAT }}
