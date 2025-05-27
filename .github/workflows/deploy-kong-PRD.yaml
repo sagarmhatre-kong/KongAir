@@ -34,9 +34,9 @@ jobs:
           deck-version: '1.46.0'
           wrapper: false
 
-      - name: deck sync
+      - name: deck gateway sync
         run: |
-          deck sync --select-tag platform-repo-managed \
+          deck gateway sync --select-tag platform-repo-managed \
               -s PRD/kong/kong.yaml \
               --konnect-runtime-group-name ${{ vars.KONNECT_CONTROL_PLANE_NAME}} \
               --konnect-token ${{ secrets.KONNECT_PAT }}
