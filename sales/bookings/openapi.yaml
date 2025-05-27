@@ -8,7 +8,8 @@ info:
   title: Bookings Service
 
 servers:
-- url: https://api.kong-air.com
+# - url: https://api.kong-air.com
+- url: http://kongair-bookings.kongair.svc.cluster.local:3000
   description: KongAir API Server
 
 paths:

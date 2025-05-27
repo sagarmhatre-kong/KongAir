@@ -10,7 +10,8 @@ info:
   title: Customer Information Service
 
 servers:
-- url: https://api.kong-air.com
+# - url: https://api.kong-air.com
+- url: http://kongair-customers.kongair.svc.cluster.local:3000
   description: KongAir API Server
 
 paths:
