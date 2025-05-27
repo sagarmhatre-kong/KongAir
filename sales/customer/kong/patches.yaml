@@ -4,8 +4,8 @@ patches:
   - selectors:
     - $.services[?(@.name=="customer-information-service")]
     values:
-      host: customer.kongair
-      port: 8083
+      host: kongair-customers.kongair.svc.cluster.local
+      port: 3000
       protocol: http
       plugins:
         - name: jwt

@@ -4,8 +4,8 @@ patches:
   - selectors:
     - $.services[?(@.name=="bookings-service")]
     values:
-      host: bookings.kongair
-      port: 8082
+      host: kongair-bookings.kongair.svc.cluster.local
+      port: 3000
       protocol: http
       plugins:
         - name: jwt
