@@ -8,8 +8,7 @@ info:
   title: Flights Service
 
 servers:
-# - url: https://api.kong-air.com
-- url: http://kongair-flights.kongair.svc.cluster.local:8080
+- url: https://api.kong-air.com
   description: KongAir API Server
 
 paths:
