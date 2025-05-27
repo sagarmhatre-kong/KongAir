@@ -108,12 +108,12 @@ services:
   tags:
   - flight-data
   - platform-repo-managed
-- host: routes.kongair
+- host: kongair-routes.kongair.svc.cluster.local
   id: 5bbc0ad8-3b7c-5dfe-a676-b28f30523a6f
   name: routes-service
   path: /
   plugins: []
-  port: 8081
+  port: 8080
   protocol: http
   routes:
   - id: 4da7a5e5-9e69-59af-a6c3-46a675c5bac6
