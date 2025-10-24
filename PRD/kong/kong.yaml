@@ -202,6 +202,34 @@ services:
     tags:
     - sales
     - platform-repo-managed
+  - id: 64d6bbe5-6da8-5ac4-864d-989c817e4cc4
+    methods:
+    - GET
+    name: bookings-service_get-checkins
+    paths:
+    - ~/checkins$
+    plugins: []
+    protocols:
+    - https
+    regex_priority: 200
+    strip_path: false
+    tags:
+    - sales
+    - platform-repo-managed
+  - id: f1e51f70-834c-5e80-8a4a-fefc0fccdaf7
+    methods:
+    - POST
+    name: bookings-service_post-checkin
+    paths:
+    - ~/checkins$
+    plugins: []
+    protocols:
+    - https
+    regex_priority: 200
+    strip_path: false
+    tags:
+    - sales
+    - platform-repo-managed
   - id: 1a619e4f-651d-550d-ae30-79f4bf45a080
     methods:
     - GET
