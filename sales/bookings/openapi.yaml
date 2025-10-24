@@ -1,6 +1,6 @@
 ---
 # OpenAPI Spec for the KongAir Bookings service
-openapi: 3.0.0
+openapi: 3.1.0
 
 info:
   description: KongAir Bookings service provides customers the ability to book and retrieve flight bookings on KongAir
@@ -106,6 +106,91 @@ paths:
                    "flight_number": "KA924",
                    "seat": "32A"
                  }
+  "/checkins":
+    get:
+      tags:
+      - sales
+      summary: Get a customer's current check-in status
+      operationId: get-checkins
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CheckIn'
+              examples:
+                Example Check-ins list response:
+                  value: |
+                    [{
+                      "checkin_id": "CHK789123",
+                      "ticket_number": "CDF3412",
+                      "boarding_pass": "BP456789",
+                      "seat": "32A",
+                      "gate": "B12",
+                      "boarding_time": "2023-09-03T08:45:00Z",
+                      "flight": {
+                        "number": "KA924",
+                        "route_id": "LHR-SFO",
+                        "scheduled_departure": "2023-09-03T09:15:00Z",
+                        "scheduled_arrival": "2023-09-03T14:23:00Z"
+                      },
+                      "status": "checked_in"
+                    }]
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+        - sales
+      summary: Check-in for a flight
+      operationId: post-checkin
+      responses:
+        '201':
+          description: Check-in Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckInResponse'
+              examples:
+                Example check-in response body:
+                  value: |
+                   {
+                    "checkin_id": "CHK789123",
+                    "boarding_pass": "BP456789",
+                    "seat": "32A",
+                    "gate": "B12",
+                    "boarding_time": "2023-09-03T08:45:00Z"
+                   }
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found, likely for the booking reference given
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Booking not found
+        '409':
+          description: Conflict - Already checked in
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Already checked in for this flight
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckInRequest'
+            examples:
+              Example check-in request body:
+                value: |
+                 {
+                   "booking_reference": "CDF3412",
+                   "passenger_name": "John Doe"
+                 }
 
 components:
   schemas:
@@ -148,3 +233,68 @@ components:
           type: string
       required:
         - ticket_number
+    CheckIn:
+      type: object
+      properties:
+        checkin_id:
+          type: string
+        ticket_number:
+          type: string
+        boarding_pass:
+          type: string
+        seat:
+          type: string
+        gate:
+          type: string
+        boarding_time:
+          type: string
+          format: date-time
+        flight:
+          type: object
+          properties:
+            number:
+              type: string
+            route_id:
+              type: string
+            scheduled_departure:
+              type: string
+              format: date-time
+            scheduled_arrival:
+              type: string
+              format: date-time
+        status:
+          type: string
+          enum: [checked_in, boarding, boarded]
+      required:
+        - checkin_id
+        - ticket_number
+        - boarding_pass
+        - flight
+        - status
+    CheckInRequest:
+      type: object
+      properties:
+        booking_reference:
+          type: string
+        passenger_name:
+          type: string
+      required:
+        - booking_reference
+        - passenger_name
+    CheckInResponse:
+      type: object
+      properties:
+        checkin_id:
+          type: string
+        boarding_pass:
+          type: string
+        seat:
+          type: string
+        gate:
+          type: string
+        boarding_time:
+          type: string
+          format: date-time
+      required:
+        - checkin_id
+        - boarding_pass
