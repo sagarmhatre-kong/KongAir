@@ -5,5 +5,5 @@ patches:
     - $.services[?(@.name=="flights-service")]
     values:
       host: kongair-flights.kongair.svc.cluster.local
-      port: 8080
+      port: 8081
       protocol: http
