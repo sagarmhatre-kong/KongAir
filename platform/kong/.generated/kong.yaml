@@ -46,7 +46,7 @@ services:
   name: flights-service
   path: /
   plugins: []
-  port: 8080
+  port: 8081
   protocol: http
   routes:
   - id: 7b2dbd94-ec5b-5ae8-b6d5-4c8b16ce0b06
